@@ -9,4 +9,13 @@
     <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="new_entry"><u>New Entry</u></string>
+    <string name="sampling_point">Sampling Point</string>
+    <string name="sample_collected_by">Sample Collected By</string>
+    <string name="date_of_sample_collection">Date of Sample Collection</string>
+    <string name="sample_deposited_by_amp_phone_no"><![CDATA[Sample Deposited By & Phone No]]></string>
+    <string name="quantity_and_packing">Quantity and packing</string>
+    <string name="date_of_sample_received_in_laboratory">Date of Sample Received in laboratory</string>
+    <string name="color_odour">Color/Odour</string>
+    <string name="submit">Submit</string>
 </resources>
