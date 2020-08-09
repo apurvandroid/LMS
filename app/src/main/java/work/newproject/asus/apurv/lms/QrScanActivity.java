@@ -31,7 +31,7 @@ public class QrScanActivity extends AppCompatActivity implements ZXingScannerVie
             requestPermission();
         }
 
-//hyy
+//hyyā
     }
 
     private boolean checkPermission() {
