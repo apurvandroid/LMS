@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".recever.ReceverDashBoardActivity">
+
+
+    <ImageView
+        android:id="@+id/imgAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@color/app_bar"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:text="DASHBOARD"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/imgAppBar"
+        app:layout_constraintLeft_toLeftOf="@id/imgAppBar"
+        app:layout_constraintTop_toTopOf="@id/imgAppBar">
+
+    </TextView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:layout_constraintTop_toBottomOf="@id/imgAppBar">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/imgBoxPAckage"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:src="@drawable/receive"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </ImageView>
+
+
+            <TextView
+                android:id="@+id/txtSampleRec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/simple_received_number"
+                android:textSize="@dimen/_18sdp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/imgBoxPAckage"
+                app:layout_constraintLeft_toRightOf="@id/imgBoxPAckage"
+                app:layout_constraintRight_toLeftOf="@+id/view"
+                app:layout_constraintTop_toTopOf="@id/imgBoxPAckage">
+
+            </TextView>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:text="@string/receiver"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/view"
+                app:layout_constraintTop_toBottomOf="@+id/imgBoxPAckage" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="0sp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginBottom="@dimen/_12sdp"
+                android:background="@color/lightRed"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </View>
+            <ImageView
+                android:id="@+id/imagflask"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:src="@drawable/flask2"
+                app:layout_constraintLeft_toRightOf="@id/view"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </ImageView>
+
+
+           <!-- <ImageView
+                android:id="@+id/imagflask"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:src="@drawable/flask2"
+                app:layout_constraintLeft_toRightOf="@id/view"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </ImageView>-->
+
+
+            <!-- <TextView
+                 android:id="@+id/txtSampleRec"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/simple_received_number"
+                 android:textSize="@dimen/_18sdp"
+                 android:textStyle="bold"
+                 app:layout_constraintBottom_toBottomOf="@id/imgBoxPAckage"
+                 app:layout_constraintLeft_toRightOf="@id/imgBoxPAckage"
+                 app:layout_constraintTop_toTopOf="@id/imgBoxPAckage">
+
+             </TextView>-->
+
+            <TextView
+                android:id="@+id/simpletestedtxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/simple_tested_number"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/imagflask"
+                app:layout_constraintLeft_toRightOf="@id/imagflask"
+                app:layout_constraintTop_toTopOf="@id/imagflask"
+                >
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_18sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:text="@string/simple_tested"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/view"
+                app:layout_constraintTop_toBottomOf="@+id/imagflask"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:layout_constraintTop_toBottomOf="@id/cardView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtnewsimple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/test_completed"
+                android:textSize="18dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/_20sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:id="@+id/txtnewsimplenum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:drawableEnd="@drawable/arrow_forword_read"
+                android:gravity="center"
+                android:text="@string/simple_received_number"
+                android:textSize="@dimen/_18sdp"
+                android:textStyle="bold"
+                android:drawablePadding="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="@id/txtnewsimple"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/txtnewsimple"
+                app:layout_constraintTop_toTopOf="@id/txtnewsimple">
+
+            </TextView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:layout_constraintTop_toBottomOf="@id/cardView1">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtassigned"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/test_completed"
+                android:textSize="18dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/_20sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:id="@+id/txtnewsimplenum1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_40sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:drawableEnd="@drawable/arrow_forword"
+                android:gravity="center"
+                android:drawablePadding="@dimen/_10sdp"
+                android:text="@string/simple_received_number"
+                android:textSize="@dimen/_18sdp"
+                android:textStyle="bold"
+
+                app:layout_constraintBottom_toBottomOf="@id/txtassigned"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/txtassigned"
+                app:layout_constraintTop_toTopOf="@id/txtassigned">
+
+            </TextView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:layout_constraintTop_toBottomOf="@id/cardView2">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtcompleted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/test_completed"
+                android:textSize="18dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/_20sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:id="@+id/txtnewsimplenum2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_40sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:drawableEnd="@drawable/arrow_forword_green"
+                android:gravity="center"
+                android:text="@string/simple_received_number"
+                android:textSize="@dimen/_18sdp"
+                android:textStyle="bold"
+                android:drawablePadding="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="@id/txtcompleted"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/txtcompleted"
+                app:layout_constraintTop_toTopOf="@id/txtcompleted">
+
+            </TextView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
