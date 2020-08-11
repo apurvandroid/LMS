@@ -18,4 +18,7 @@
     <string name="date_of_sample_received_in_laboratory">Date of Sample Received in laboratory</string>
     <string name="color_odour">Color/Odour</string>
     <string name="submit">Submit</string>
+    <string name="sample_received">Sample Received</string>
+    <string name="scan_to_entry">Scan to Entry</string>
+    <string name="mobile_number">Mobile Number</string>
 </resources>

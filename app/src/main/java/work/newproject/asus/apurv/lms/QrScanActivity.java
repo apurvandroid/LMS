@@ -4,13 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.zxing.Result;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import work.newproject.asus.apurv.lms.recever.NewFormActivity;
+import work.newproject.asus.apurv.lms.recever.ReceverDashBoardActivity;
 
 import static android.Manifest.permission.CAMERA;
 
@@ -18,10 +22,14 @@ public class QrScanActivity extends AppCompatActivity implements ZXingScannerVie
 
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
+    String pageID;
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_scan);
+
+        pageID=getIntent().getStringExtra("pageID");
 
         scannerView = new ZXingScannerView(this);
         setContentView(scannerView);
@@ -31,7 +39,7 @@ public class QrScanActivity extends AppCompatActivity implements ZXingScannerVie
             requestPermission();
         }
 
-//hyyā
+
     }
 
     private boolean checkPermission() {
@@ -72,6 +80,24 @@ public class QrScanActivity extends AppCompatActivity implements ZXingScannerVie
     public void handleResult(Result rawResult) {
         scannerView.removeAllViews();
         scannerView.stopCamera();
+
+
+        Intent intent=new Intent(QrScanActivity.this, NewFormActivity.class);
+        intent.putExtra("barcodeID",rawResult.toString());
+        startActivity(intent);
+        finish();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (pageID.equalsIgnoreCase("1")){
+            Intent intent=new Intent(this, ReceverDashBoardActivity.class);
+            startActivity(intent);
+            finish();
+        }else {
+            super.onBackPressed();
+        }
 
     }
 }
