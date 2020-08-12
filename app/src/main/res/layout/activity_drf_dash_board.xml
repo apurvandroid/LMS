@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.AdminDashboard">
-
+    tools:context=".Grf.DrfDashBoardActivity">
     <ProgressBar
         android:id="@+id/progress_circular"
         android:visibility="gone"
@@ -26,5 +25,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

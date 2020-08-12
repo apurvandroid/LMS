@@ -27,4 +27,8 @@
     <string name="new_simple">New Simple</string>
     <string name="assigned_Simple">Assigned Simple</string>
     <string name="test_completed">Test Completed</string>
+    <string name="name_and_address">Name and Address</string>
+    <string name="enter_in_details">Enter In Details</string>
+    <string name="new_sample">New Sample</string>
+    <string name="save">Save</string>
 </resources>

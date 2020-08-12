@@ -24,6 +24,8 @@ import io.reactivex.rxjava3.core.SingleObserver;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import work.newproject.asus.apurv.lms.Admin.AdminDashboard;
+import work.newproject.asus.apurv.lms.Grf.DrfDashBoardActivity;
 import work.newproject.asus.apurv.lms.R;
 import work.newproject.asus.apurv.lms.network.Api;
 import work.newproject.asus.apurv.lms.network.ApiClints;
@@ -89,11 +91,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-
-
         button.setOnClickListener(v -> login());
-
-
         return view;
     }
 
@@ -121,12 +119,29 @@ public class LoginFragment extends Fragment {
                         @Override
                         public void onSuccess(@NonNull LoginModel loginModel) {
 
-                            Toast.makeText(getContext(), loginModel.getMessage() + "", Toast.LENGTH_SHORT).show();
                             if (loginModel.getStatus().equalsIgnoreCase("success")) {
-                                MySharedpreferences.getInstance().save(getContext(), AppStrings.userID, loginModel.getData().get(0).getId());
-                                Intent intent = new Intent(getContext(), ReceverDashBoardActivity.class);
-                                startActivity(intent);
-                                getActivity().finish();
+                                if (loginModel.getData().get(0).getType().equalsIgnoreCase("reciever")) {
+                                    MySharedpreferences.getInstance().save(getContext(), AppStrings.userID, loginModel.getData().get(0).getId());
+                                    MySharedpreferences.getInstance().save(getContext(), AppStrings.loginType, loginModel.getData().get(0).getType());
+                                    Intent intent = new Intent(getContext(), ReceverDashBoardActivity.class);
+                                    startActivity(intent);
+                                    getActivity().finish();
+                                } else if (loginModel.getData().get(0).getType().equalsIgnoreCase("admin")) {
+                                    Log.d("TAG", "onSuccess: " + loginModel.getData().get(0).getId());
+                                    Log.d("TAG", "onSuccess: " + loginModel.getData().get(0).getType());
+                                    MySharedpreferences.getInstance().save(getContext(), AppStrings.userID, loginModel.getData().get(0).getId());
+                                    MySharedpreferences.getInstance().save(getContext(), AppStrings.loginType, loginModel.getData().get(0).getType());
+                                    Intent intent = new Intent(getContext(), AdminDashboard.class);
+                                    startActivity(intent);
+                                    getActivity().finish();
+                                }else {
+                                    MySharedpreferences.getInstance().save(getContext(), AppStrings.userID, loginModel.getData().get(0).getId());
+                                    MySharedpreferences.getInstance().save(getContext(), AppStrings.loginType, loginModel.getData().get(0).getType());
+                                    Intent intent = new Intent(getContext(), DrfDashBoardActivity.class);
+                                    startActivity(intent);
+                                    getActivity().finish();
+                                }
+
                             }
 
 
@@ -136,7 +151,7 @@ public class LoginFragment extends Fragment {
                         @Override
                         public void onError(@NonNull Throwable e) {
                             hideProgress();
-                            Log.d("TAG", "onError: "+e.getMessage());
+                            Log.d("TAG", "onError: " + e.getMessage());
                         }
                     });
         }

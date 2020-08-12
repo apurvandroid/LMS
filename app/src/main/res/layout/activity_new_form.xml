@@ -56,6 +56,21 @@
                         android:layout_height="1dp"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+                <EditText
+                    android:id="@+id/edAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:hint="@string/name_and_address"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+
+
                 <EditText
                     android:id="@+id/editTextTextPersonName"
                     android:layout_width="0dp"
@@ -66,7 +81,7 @@
                     android:hint="@string/sampling_point"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/spinner" />
+                    app:layout_constraintTop_toBottomOf="@+id/edAddress" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/spinner2"
@@ -106,6 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:ems="10"
+                    android:focusable="false"
                     android:inputType="date"
                     android:hint="@string/date_of_sample_collection"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -143,7 +159,7 @@
                     android:layout_marginTop="16dp"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:hint="Enter in details"
+                    android:hint="@string/enter_in_details"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text2" />
 
@@ -154,6 +170,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:ems="10"
+                    android:focusable="false"
                     android:inputType="date"
                     android:hint="@string/date_of_sample_received_in_laboratory"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -190,4 +207,17 @@
 
         </androidx.cardview.widget.CardView>
     </androidx.core.widget.NestedScrollView>
+
+
+    <ProgressBar
+        android:id="@+id/progress_circular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ProgressBar>
 </androidx.constraintlayout.widget.ConstraintLayout>

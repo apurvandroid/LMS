@@ -1,13 +1,11 @@
-package work.newproject.asus.apurv.lms.recever;
+package work.newproject.asus.apurv.lms.Admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import butterknife.BindView;
@@ -18,48 +16,32 @@ import io.reactivex.rxjava3.core.SingleObserver;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import work.newproject.asus.apurv.lms.MainActivity;
-import work.newproject.asus.apurv.lms.QrScanActivity;
 import work.newproject.asus.apurv.lms.R;
 import work.newproject.asus.apurv.lms.adapter.SubEntyListAdapter;
 import work.newproject.asus.apurv.lms.network.Api;
 import work.newproject.asus.apurv.lms.network.ApiClints;
 import work.newproject.asus.apurv.lms.network.model.GetList;
+import work.newproject.asus.apurv.lms.recever.ReceverDashBoardActivity;
 
-public class ReceverDashBoardActivity extends AppCompatActivity {
+public class NewSampleActivity extends AppCompatActivity {
+
 
 
     @BindView(R.id.rvEntryList)
     RecyclerView rvEntryList;
-
-
-    @BindView(R.id.imgScanCode)
-    ImageView imgScanCode;
-
 
     @BindView(R.id.progress_circular)
     ProgressBar progress_circular;
 
     CompositeDisposable disposable = new CompositeDisposable();
     Api api = ApiClints.getClient().create(Api.class);
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recever_dash_board2);
+        setContentView(R.layout.activity_new_sample);
         ButterKnife.bind(this);
-        imgScanCode.setOnClickListener(v -> openScanner());
 
         getList();
-    }
-
-    private void openScanner() {
-        Intent intent = new Intent(ReceverDashBoardActivity.this, QrScanActivity.class);
-        intent.putExtra("pageID", "1");
-        startActivity(intent);
-        finish();
     }
 
 
@@ -78,8 +60,8 @@ public class ReceverDashBoardActivity extends AppCompatActivity {
                     public void onSuccess(@NonNull GetList getList) {
 
                         if (getList.getStatus().equalsIgnoreCase("success")) {
-                            SubEntyListAdapter mainCatAdapter = new SubEntyListAdapter(ReceverDashBoardActivity.this, getList.getData(),1);
-                            rvEntryList.setLayoutManager(new LinearLayoutManager(ReceverDashBoardActivity.this, LinearLayoutManager.VERTICAL, false));
+                            SubEntyListAdapter mainCatAdapter = new SubEntyListAdapter(NewSampleActivity.this, getList.getData(),2);
+                            rvEntryList.setLayoutManager(new LinearLayoutManager(NewSampleActivity.this, LinearLayoutManager.VERTICAL, false));
                             rvEntryList.setAdapter(mainCatAdapter);
 
                         } else {
@@ -95,7 +77,6 @@ public class ReceverDashBoardActivity extends AppCompatActivity {
                     }
                 });
     }
-
     private void showProgress() {
         progress_circular.setVisibility(View.VISIBLE);
     }
@@ -103,6 +84,5 @@ public class ReceverDashBoardActivity extends AppCompatActivity {
     private void hideProgress() {
         progress_circular.setVisibility(View.GONE);
     }
-
 
 }

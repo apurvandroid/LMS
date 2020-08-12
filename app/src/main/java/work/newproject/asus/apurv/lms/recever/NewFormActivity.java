@@ -2,17 +2,22 @@ package work.newproject.asus.apurv.lms.recever;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -27,6 +32,8 @@ import work.newproject.asus.apurv.lms.R;
 import work.newproject.asus.apurv.lms.network.Api;
 import work.newproject.asus.apurv.lms.network.ApiClints;
 import work.newproject.asus.apurv.lms.network.model.AddNewForm;
+import work.newproject.asus.apurv.lms.utils.AppStrings;
+import work.newproject.asus.apurv.lms.utils.MySharedpreferences;
 
 public class NewFormActivity extends AppCompatActivity {
 
@@ -71,6 +78,12 @@ public class NewFormActivity extends AppCompatActivity {
     @BindView(R.id.btSave)
     Button btSave;
 
+    @BindView(R.id.edAddress)
+    EditText edAddress;
+
+
+    @BindView(R.id.progress_circular)
+    ProgressBar progress_circular;
 
     String selectIndustriItem, selectTypeOfSampleItem, selectQty;
 
@@ -78,12 +91,20 @@ public class NewFormActivity extends AppCompatActivity {
     List<String> selectTpeOfSampleItmeList = new ArrayList<>();
     List<String> qtyList = new ArrayList<>();
 
+    private DatePicker datePicker;
+    private Calendar calendar;
+    private int year, month, day;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_form);
         ButterKnife.bind(this);
         barcodeID = getIntent().getStringExtra("barcodeID");
+
+
+        edDate.setOnClickListener(v -> openDate(v, 1));
+        edDateSapmpleRec.setOnClickListener(v -> openDate(v, 2));
 
         btSave.setOnClickListener(v -> saveData());
 
@@ -100,8 +121,7 @@ public class NewFormActivity extends AppCompatActivity {
 
         selectTypeOfSampleItem = "Grab";
 
-        qtyList.add("Plastic");
-        qtyList.add("jaricane");
+        qtyList.add("Plastic jaricane");
         qtyList.add("other");
 
         selectQty = "Plastic";
@@ -168,6 +188,68 @@ public class NewFormActivity extends AppCompatActivity {
 
     }
 
+    private void openDate(View view, int id) {
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        setDate(view, id);
+    }
+
+    @SuppressWarnings("deprecation")
+    public void setDate(View view, int id) {
+        if (id == 1) {
+            showDialog(999);
+        } else {
+            showDialog(100);
+        }
+
+
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        // TODO Auto-generated method stub
+        if (id == 999) {
+            return new DatePickerDialog(this,
+                    myDateListener, year, month, day);
+        } else {
+            return new DatePickerDialog(this,
+                    myDateListenerRec, year, month, day);
+        }
+    }
+
+
+    private DatePickerDialog.OnDateSetListener myDateListener = new
+            DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker arg0,
+                                      int arg1, int arg2, int arg3) {
+                    // TODO Auto-generated method stub
+                    // arg1 = year
+                    // arg2 = month
+                    // arg3 = day
+                    edDate.setText(new StringBuilder().append(year).append("-")
+                            .append(month).append("-").append(day));
+                }
+            };
+
+
+    private DatePickerDialog.OnDateSetListener myDateListenerRec = new
+            DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker arg0,
+                                      int arg1, int arg2, int arg3) {
+                    // TODO Auto-generated method stub
+                    // arg1 = year
+                    // arg2 = month
+                    // arg3 = day
+                    edDateSapmpleRec.setText(new StringBuilder().append(year).append("-")
+                            .append(month).append("-").append(day));
+                }
+            };
 
     private void saveData() {
         String samplePoint = edSamplePoint.getText().toString().trim();
@@ -193,8 +275,12 @@ public class NewFormActivity extends AppCompatActivity {
             edDateSapmpleRec.setError(emptyTag);
         } else if (c.isEmpty()) {
             color.setError(emptyTag);
+        } else if (edAddress.getText().toString().trim().isEmpty()) {
+            edAddress.setError(emptyTag);
+
         } else {
-            api.addForm(c, sampleRec, selectQty, "", "", sampleDignosticAndPhone, date, sampleCollectionBY, selectTypeOfSampleItem, "", "", "")
+            showProgress();
+            api.addForm(c, sampleRec, details, selectQty, sampleDignosticAndPhone, date, sampleCollectionBY, selectTypeOfSampleItem, edAddress.getText().toString().trim(), samplePoint, selectIndustriItem,barcodeID, MySharedpreferences.getInstance().get(NewFormActivity.this, AppStrings.userID),MySharedpreferences.getInstance().get(NewFormActivity.this, AppStrings.loginType))
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe(new SingleObserver<AddNewForm>() {
@@ -205,12 +291,19 @@ public class NewFormActivity extends AppCompatActivity {
 
                         @Override
                         public void onSuccess(@NonNull AddNewForm addNewForm) {
+                            hideProgress();
+                            if (addNewForm.getStatus().equalsIgnoreCase("success")) {
+                                Toast.makeText(NewFormActivity.this, addNewForm.getMessage(), Toast.LENGTH_SHORT).show();
+                                onBackPressed();
+                            } else {
+                                Toast.makeText(NewFormActivity.this, addNewForm.getMessage(), Toast.LENGTH_SHORT).show();
 
+                            }
                         }
 
                         @Override
                         public void onError(@NonNull Throwable e) {
-
+                            hideProgress();
                         }
                     });
         }
@@ -223,4 +316,14 @@ public class NewFormActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+
+    private void showProgress() {
+        progress_circular.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgress() {
+        progress_circular.setVisibility(View.GONE);
+    }
+
 }

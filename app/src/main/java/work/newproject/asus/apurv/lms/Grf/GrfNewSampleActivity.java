@@ -1,13 +1,11 @@
-package work.newproject.asus.apurv.lms.recever;
+package work.newproject.asus.apurv.lms.Grf;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import butterknife.BindView;
@@ -18,24 +16,19 @@ import io.reactivex.rxjava3.core.SingleObserver;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import work.newproject.asus.apurv.lms.MainActivity;
-import work.newproject.asus.apurv.lms.QrScanActivity;
+import work.newproject.asus.apurv.lms.Admin.NewSampleActivity;
 import work.newproject.asus.apurv.lms.R;
 import work.newproject.asus.apurv.lms.adapter.SubEntyListAdapter;
 import work.newproject.asus.apurv.lms.network.Api;
 import work.newproject.asus.apurv.lms.network.ApiClints;
 import work.newproject.asus.apurv.lms.network.model.GetList;
+import work.newproject.asus.apurv.lms.utils.AppStrings;
+import work.newproject.asus.apurv.lms.utils.MySharedpreferences;
 
-public class ReceverDashBoardActivity extends AppCompatActivity {
-
+public class GrfNewSampleActivity extends AppCompatActivity {
 
     @BindView(R.id.rvEntryList)
     RecyclerView rvEntryList;
-
-
-    @BindView(R.id.imgScanCode)
-    ImageView imgScanCode;
-
 
     @BindView(R.id.progress_circular)
     ProgressBar progress_circular;
@@ -43,30 +36,18 @@ public class ReceverDashBoardActivity extends AppCompatActivity {
     CompositeDisposable disposable = new CompositeDisposable();
     Api api = ApiClints.getClient().create(Api.class);
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recever_dash_board2);
+        setContentView(R.layout.activity_grf_new_sample);
         ButterKnife.bind(this);
-        imgScanCode.setOnClickListener(v -> openScanner());
 
         getList();
     }
 
-    private void openScanner() {
-        Intent intent = new Intent(ReceverDashBoardActivity.this, QrScanActivity.class);
-        intent.putExtra("pageID", "1");
-        startActivity(intent);
-        finish();
-    }
-
-
     private void getList() {
-
         showProgress();
-        api.getList().subscribeOn(Schedulers.io())
+        api.getGrf(MySharedpreferences.getInstance().get(this, AppStrings.userID)).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleObserver<GetList>() {
                     @Override
@@ -78,12 +59,9 @@ public class ReceverDashBoardActivity extends AppCompatActivity {
                     public void onSuccess(@NonNull GetList getList) {
 
                         if (getList.getStatus().equalsIgnoreCase("success")) {
-                            SubEntyListAdapter mainCatAdapter = new SubEntyListAdapter(ReceverDashBoardActivity.this, getList.getData(),1);
-                            rvEntryList.setLayoutManager(new LinearLayoutManager(ReceverDashBoardActivity.this, LinearLayoutManager.VERTICAL, false));
+                            SubEntyListAdapter mainCatAdapter = new SubEntyListAdapter(GrfNewSampleActivity.this, getList.getData(), 3);
+                            rvEntryList.setLayoutManager(new LinearLayoutManager(GrfNewSampleActivity.this, LinearLayoutManager.VERTICAL, false));
                             rvEntryList.setAdapter(mainCatAdapter);
-
-                        } else {
-
                         }
 
                         hideProgress();
@@ -103,6 +81,4 @@ public class ReceverDashBoardActivity extends AppCompatActivity {
     private void hideProgress() {
         progress_circular.setVisibility(View.GONE);
     }
-
-
 }

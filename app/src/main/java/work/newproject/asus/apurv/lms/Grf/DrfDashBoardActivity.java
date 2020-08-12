@@ -1,4 +1,4 @@
-package work.newproject.asus.apurv.lms.Admin;
+package work.newproject.asus.apurv.lms.Grf;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -8,21 +8,18 @@ import android.os.Bundle;
 
 import work.newproject.asus.apurv.lms.Admin.fragment.AdminDashBoardFragment;
 import work.newproject.asus.apurv.lms.R;
-import work.newproject.asus.apurv.lms.auth.LoginFragment;
 
-public class AdminDashboard extends AppCompatActivity {
+public class DrfDashBoardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_dashboard);
+        setContentView(R.layout.activity_drf_dash_board);
         openDashBoard();
     }
-
-
     private void openDashBoard() {
         Bundle args = new Bundle();
-        Fragment fragmentt = new AdminDashBoardFragment();
+        Fragment fragmentt = new GrfFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         fragmentt.setArguments(args);
         transaction.replace(R.id.fragment, fragmentt);
