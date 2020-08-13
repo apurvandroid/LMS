@@ -103,6 +103,8 @@ public class TestActivity extends AppCompatActivity {
                 GroundWaterModel dataModel = new GroundWaterModel();
                 dataModel.setName(getWasteWater().get(i));
                 dataModel.setChecked(false);
+                dataModel.setValue("0");
+                dataModel.setPosition(i);
                 list.add(dataModel);
             }
 
@@ -114,10 +116,13 @@ public class TestActivity extends AppCompatActivity {
             rvList.setAdapter(adapter);
         } else if (id.equalsIgnoreCase("Sample Source (River/Lake/Pond/Drain/S.T.P./any other)")) {
             List<GroundWaterModel> list = new ArrayList<>();
-            for (int i = 0; i < getGroundWater().size(); i++) {
+            for (int i = 0; i < getSurfaceList().size(); i++) {
                 GroundWaterModel dataModel = new GroundWaterModel();
-                dataModel.setName(getGroundWater().get(i));
+                dataModel.setName(getSurfaceList().get(i));
                 dataModel.setChecked(false);
+                dataModel.setValue("0");
+                dataModel.setPosition(i);
+
                 list.add(dataModel);
             }
             listWater = list;
@@ -128,10 +133,12 @@ public class TestActivity extends AppCompatActivity {
             rvList.setAdapter(adapter);
         } else {
             List<GroundWaterModel> list = new ArrayList<>();
-            for (int i = 0; i < getSurfaceList().size(); i++) {
+            for (int i = 0; i < getGroundWater().size(); i++) {
                 GroundWaterModel dataModel = new GroundWaterModel();
-                dataModel.setName(getSurfaceList().get(i));
+                dataModel.setName(getGroundWater().get(i));
                 dataModel.setChecked(false);
+                dataModel.setValue("0");
+                dataModel.setPosition(i);
                 list.add(dataModel);
             }
 
@@ -268,6 +275,8 @@ public class TestActivity extends AppCompatActivity {
                 }
             }
 
+
+            Log.d("TAG", "getJson: "+jsonCartList);
 
             showProgress();
             api.sendTestForm(valueID, valueSend, barcodeID, jsonCartList).subscribeOn(Schedulers.io())

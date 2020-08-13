@@ -99,6 +99,8 @@ public class FormSubMItActivity extends AppCompatActivity implements GrfTestAdap
                                     model.setChecked(jsonObject.getBoolean("isChecked"));
                                     model.setName(jsonObject.getString("name"));
                                     model.setNote("-");
+                                    model.setValue(jsonObject.getString("value"));
+                                    model.setPosition(jsonObject.getInt("position"));
 
                                     list.add(model);
                                 }
@@ -127,13 +129,22 @@ public class FormSubMItActivity extends AppCompatActivity implements GrfTestAdap
 
 
     @Override
-    public void setData(String text, String name, boolean checked, int pos) {
+    public void setData(String text, String name, boolean checked,String value,int dataValue, int pos) {
         GroundWaterModel model = new GroundWaterModel();
         for (int i = 0; i < list.size(); i++) {
 
             model.setChecked(checked);
             model.setName(name);
             model.setNote(text);
+            model.setPosition(dataValue);
+            model.setValue(value);
+
+
+       /*
+            if (list.get(i).isChecked()){
+                Log.d("TAG", "setData: "+list.get(i).getName());
+
+            }*/
 
         }
         list.remove(pos);

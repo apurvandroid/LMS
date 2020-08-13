@@ -8,11 +8,11 @@
 
 
     <ImageView
+        android:id="@+id/img_logo"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/splashss"
         android:layout_width="@dimen/_150sdp"
         android:layout_height="@dimen/_150sdp">
 

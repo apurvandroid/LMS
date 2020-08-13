@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +34,9 @@ public class GrfNewSampleActivity extends AppCompatActivity {
     @BindView(R.id.progress_circular)
     ProgressBar progress_circular;
 
+
+    @BindView(R.id.txtDash)
+    TextView Analyst;
     CompositeDisposable disposable = new CompositeDisposable();
     Api api = ApiClints.getClient().create(Api.class);
 
@@ -41,6 +45,9 @@ public class GrfNewSampleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grf_new_sample);
         ButterKnife.bind(this);
+
+        Analyst.setText("Analyst");
+
 
         getList();
     }

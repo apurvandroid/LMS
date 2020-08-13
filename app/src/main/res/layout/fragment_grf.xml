@@ -18,13 +18,25 @@
 
     </ImageView>
 
+    <ImageView
+        android:id="@+id/imgLogout"
+        android:background="@drawable/ic_baseline_power_settings_new_24"
+        android:layout_width="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/imgAppBar"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="@dimen/_15sdp"
+        app:layout_constraintTop_toTopOf="@id/imgAppBar"
+        android:layout_height="wrap_content">
+
+    </ImageView>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_15sdp"
-        android:text="DASHBOARD"
+        android:text="@string/analyst_dashboard"
         android:textColor="@color/white"
+        android:textAllCaps="true"
         app:layout_constraintBottom_toBottomOf="@id/imgAppBar"
         app:layout_constraintLeft_toLeftOf="@id/imgAppBar"
         app:layout_constraintTop_toTopOf="@id/imgAppBar">

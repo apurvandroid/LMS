@@ -31,4 +31,10 @@
     <string name="enter_in_details">Enter In Details</string>
     <string name="new_sample">New Sample</string>
     <string name="save">Save</string>
+    <string name="dashboard">DASHBOARD</string>
+    <string name="user_number">User Number</string>
+    <string name="login_as">Login as</string>
+    <string name="analyst_dashboard">Analyst Dashboard</string>
+    <string name="u_p_pollution_control_boards">U.P. Pollution control boards</string>
+    <string name="lab_management_system_l_m_s">Lab Management System (L.M.S)</string>
 </resources>

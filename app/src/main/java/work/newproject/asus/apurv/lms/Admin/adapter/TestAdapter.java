@@ -48,6 +48,13 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 list.get(holder.getAdapterPosition()).setChecked(isChecked);
+                if (isChecked){
+                    list.get(holder.getAdapterPosition()).setValue("1");
+                }else {
+                    list.get(holder.getAdapterPosition()).setValue("0");
+
+                }
+
             }
         });
     }
@@ -67,4 +74,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
             checkBox = itemView.findViewById(R.id.checkBox);
         }
     }
+
+
+
 }

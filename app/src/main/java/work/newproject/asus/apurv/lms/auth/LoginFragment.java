@@ -15,6 +15,10 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
+import com.jaredrummler.materialspinner.MaterialSpinner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,35 +42,64 @@ import work.newproject.asus.apurv.lms.utils.MySharedpreferences;
 public class LoginFragment extends Fragment {
 
 
-    @BindView(R.id.tabLayout)
+  /*  @BindView(R.id.tabLayout)
     TabLayout tabs;
-
+*/
     CompositeDisposable disposable = new CompositeDisposable();
     Api api = ApiClints.getClient().create(Api.class);
 
 
-    @BindView(R.id.editTextTextEmailAddress)
+    @BindView(R.id.edUser)
     EditText editTextTextEmailAddress;
 
-    @BindView(R.id.editTextTextPassword)
+    @BindView(R.id.edPass)
     EditText editTextTextPassword;
 
     @BindView(R.id.button)
     Button button;
 
-    String loginType;
+
 
     @BindView(R.id.progress_circular)
     ProgressBar progress_circular;
 
 
+    @BindView(R.id.spinner)
+    MaterialSpinner spinner;
+
+    private List<String> spinnerList;
+
+    String spinnerValue="Login as ";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);
-        loginType = "admin";
-        tabs.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
+
+        spinnerList = new ArrayList<>();
+
+        spinnerList.add("Login as ");
+        spinnerList.add("admin");
+        spinnerList.add("analyst");
+        spinnerList.add("receiver");
+
+        spinner.setItems(spinnerList);
+        spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
+            @Override
+            public void onItemSelected(MaterialSpinner view, int position, long idd, String item) {
+
+                if (item.equalsIgnoreCase("Login as ")){
+
+                }else if (item.equalsIgnoreCase("analyst")){
+                    spinnerValue="jrf";
+                }else {
+                    spinnerValue=item;
+                }
+
+
+            }
+        });
+     /*   tabs.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 
@@ -90,7 +123,7 @@ public class LoginFragment extends Fragment {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
-
+*/
         button.setOnClickListener(v -> login());
         return view;
     }
@@ -105,9 +138,13 @@ public class LoginFragment extends Fragment {
             editTextTextEmailAddress.setError("Empty");
         } else if (pass.isEmpty()) {
             editTextTextPassword.setError("Empty");
-        } else {
+        } else if (spinnerValue.equalsIgnoreCase("Login as ")) {
+
+            Toast.makeText(getContext(), "Select Login", Toast.LENGTH_SHORT).show();
+        }else {
+
             showProgress();
-            api.login(number, pass, loginType)
+            api.login(number, pass, spinnerValue)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe(new SingleObserver<LoginModel>() {

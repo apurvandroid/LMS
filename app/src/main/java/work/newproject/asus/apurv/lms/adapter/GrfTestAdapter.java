@@ -57,7 +57,7 @@ public class GrfTestAdapter extends RecyclerView.Adapter<GrfTestAdapter.ViewHold
 
                @Override
                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                   data.setData(holder.edNote.getText().toString(),datum.getName(),datum.isChecked(),position);
+                   data.setData(holder.edNote.getText().toString(),datum.getName(),datum.isChecked(),datum.getValue(),datum.getPosition(),position);
 
                }
 
@@ -94,6 +94,6 @@ public class GrfTestAdapter extends RecyclerView.Adapter<GrfTestAdapter.ViewHold
     }
 
     public interface SetData{
-        void setData(String text,String name,boolean checked,int pos);
+        void setData(String text,String name,boolean checked,String value,int dataValue,int pos);
     }
 }

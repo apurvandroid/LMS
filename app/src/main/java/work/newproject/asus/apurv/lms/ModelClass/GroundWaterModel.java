@@ -1,9 +1,26 @@
 package work.newproject.asus.apurv.lms.ModelClass;
 
 public class GroundWaterModel {
-    String name,note;
+    String name,note,value;
      boolean isChecked;
+     int position;
 
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
 
     public String getNote() {
         return note;

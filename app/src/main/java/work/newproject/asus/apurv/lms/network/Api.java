@@ -27,8 +27,6 @@ public interface Api {
     ,@Field("collected_by") String collected_by,@Field("type_of_sample") String type_of_sample,@Field("address") String address
     ,@Field("sampling_point") String sampling_point,@Field("type") String type,@Field("qr_id") String qr_ic,@Field("login_id") String login_id,@Field("login_type") String login_type);
 
-
-
     @POST("get_reieving_data")
     Single<GetList> getList();
 

@@ -5,9 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.concurrent.TimeUnit;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Completable;
 import work.newproject.asus.apurv.lms.Admin.AdminDashboard;
@@ -20,12 +25,16 @@ public class SplashScreen extends AppCompatActivity {
 
     int time = 1;
 
+    @BindView(R.id.img_logo)
+    ImageView img_logo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
 
+        ButterKnife.bind(this);
+        Glide.with(this).load(R.drawable.logo_data).into(img_logo);
         Completable.timer(time, TimeUnit.SECONDS, AndroidSchedulers.mainThread()).subscribe(SplashScreen.this::intentServiceFire);
 
     }

@@ -25,6 +25,7 @@ import work.newproject.asus.apurv.lms.adapter.SubEntyListAdapter;
 import work.newproject.asus.apurv.lms.network.Api;
 import work.newproject.asus.apurv.lms.network.ApiClints;
 import work.newproject.asus.apurv.lms.network.model.GetList;
+import work.newproject.asus.apurv.lms.utils.MySharedpreferences;
 
 public class ReceverDashBoardActivity extends AppCompatActivity {
 
@@ -32,6 +33,8 @@ public class ReceverDashBoardActivity extends AppCompatActivity {
     @BindView(R.id.rvEntryList)
     RecyclerView rvEntryList;
 
+    @BindView(R.id.imgLogout)
+    ImageView imgLogout;
 
     @BindView(R.id.imgScanCode)
     ImageView imgScanCode;
@@ -51,7 +54,7 @@ public class ReceverDashBoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recever_dash_board2);
         ButterKnife.bind(this);
         imgScanCode.setOnClickListener(v -> openScanner());
-
+        imgLogout.setOnClickListener(v -> signOut());
         getList();
     }
 
@@ -104,5 +107,10 @@ public class ReceverDashBoardActivity extends AppCompatActivity {
         progress_circular.setVisibility(View.GONE);
     }
 
-
+    private void signOut() {
+        MySharedpreferences.getInstance().removeAll(ReceverDashBoardActivity.this);
+        Intent intent = new Intent(ReceverDashBoardActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

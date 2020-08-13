@@ -103,8 +103,8 @@ public class NewFormActivity extends AppCompatActivity {
         barcodeID = getIntent().getStringExtra("barcodeID");
 
 
-        edDate.setOnClickListener(v -> openDate(v, 1));
-        edDateSapmpleRec.setOnClickListener(v -> openDate(v, 2));
+      /*  edDate.setOnClickListener(v -> openDate(v, 1));
+        edDateSapmpleRec.setOnClickListener(v -> openDate(v, 2));*/
 
         btSave.setOnClickListener(v -> saveData());
 
@@ -260,7 +260,6 @@ public class NewFormActivity extends AppCompatActivity {
         String sampleRec = edDateSapmpleRec.getText().toString().trim();
         String c = color.getText().toString().trim();
 
-
         if (samplePoint.isEmpty()) {
             edSamplePoint.setError(emptyTag);
         } else if (sampleCollectionBY.isEmpty()) {
@@ -280,7 +279,7 @@ public class NewFormActivity extends AppCompatActivity {
 
         } else {
             showProgress();
-            api.addForm(c, sampleRec, details, selectQty, sampleDignosticAndPhone, date, sampleCollectionBY, selectTypeOfSampleItem, edAddress.getText().toString().trim(), samplePoint, selectIndustriItem,barcodeID, MySharedpreferences.getInstance().get(NewFormActivity.this, AppStrings.userID),MySharedpreferences.getInstance().get(NewFormActivity.this, AppStrings.loginType))
+            api.addForm(c, sampleRec, details, selectQty, sampleDignosticAndPhone, date, sampleCollectionBY, "selectTypeOfSampleItem", edAddress.getText().toString().trim(), samplePoint, selectIndustriItem,barcodeID, MySharedpreferences.getInstance().get(NewFormActivity.this, AppStrings.userID),MySharedpreferences.getInstance().get(NewFormActivity.this, AppStrings.loginType))
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe(new SingleObserver<AddNewForm>() {
