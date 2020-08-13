@@ -48,7 +48,7 @@ public class GrfNewSampleActivity extends AppCompatActivity {
 
         Analyst.setText("Analyst");
 
-
+//data
         getList();
     }
 
